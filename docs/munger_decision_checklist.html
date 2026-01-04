@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>查理·芒格终极决策手册 | The Munger Decision Checklist</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Roboto:wght@400;500;700&display=swap');
+
+        :root {
+            --primary-color: #0ABAB5; /* Tiffany Blue */
+            --primary-dark: #008F8A; /* Darker Tiffany for text */
+            --bg-color: #F4FAFA; /* Very light cyan bg */
+            --paper-color: #FFFFFF;
+            --text-main: #2C3E50;
+            --text-light: #7F8C8D;
+            --border-color: #E0E0E0;
+            --shadow: 0 4px 20px rgba(10, 186, 181, 0.1);
+        }
+
+        body {
+            font-family: 'Roboto', 'Noto Serif SC', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .checklist-container {
+            width: 900px;
+            padding: 0;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            background-color: var(--paper-color);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border-top: 8px solid var(--primary-color);
+        }
+
+        .title-cn {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 36px;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            letter-spacing: 2px;
+            color: var(--text-main);
+        }
+
+        .title-en {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 700;
+        }
+
+        .quote-box {
+            margin: 20px auto 0;
+            max-width: 600px;
+            font-style: italic;
+            color: var(--text-light);
+            font-family: 'Noto Serif SC', serif;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* 双轨布局 */
+        .two-track-layout {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .track-card {
+            flex: 1;
+            background-color: var(--paper-color);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid transparent;
+            transition: transform 0.2s;
+        }
+        
+        .track-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 左脑轨道 */
+        .track-card.left-brain {
+            border-left-color: var(--primary-color);
+        }
+
+        /* 右脑轨道 */
+        .track-card.right-brain {
+            border-left-color: #FF6B6B; /* 互补色：柔和红 */
+        }
+
+        .track-header {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 20px;
+            font-weight: 900;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .left-brain .track-header { color: var(--primary-dark); }
+        .right-brain .track-header { color: #D64545; }
+
+        .icon { font-size: 24px; }
+
+        .check-item {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .item-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .item-desc ul {
+            margin: 0;
+            padding-left: 15px;
+            list-style-type: none; /* 去掉默认圆点，用自定义符号 */
+        }
+
+        .item-desc li {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text-light);
+            margin-bottom: 4px;
+            position: relative;
+        }
+
+        .item-desc li::before {
+            content: "•";
+            color: #BDC3C7;
+            position: absolute;
+            left: -12px;
+        }
+
+        .checkbox {
+            width: 14px;
+            height: 14px;
+            border: 2px solid #BDC3C7;
+            border-radius: 4px;
+            position: absolute;
+            left: 0;
+            top: 3px;
+            cursor: pointer;
+        }
+
+        .left-brain .checkbox:hover { border-color: var(--primary-color); }
+        .right-brain .checkbox:hover { border-color: #FF6B6B; }
+
+        /* 机会成本计算器 */
+        .opp-cost-section {
+            background-color: var(--paper-color);
+            padding: 30px 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .opp-cost-section::before {
+            content: '⚖️';
+            position: absolute;
+            right: -20px;
+            top: -20px;
+            font-size: 150px;
+            opacity: 0.05;
+            transform: rotate(15deg);
+        }
+
+        .section-header {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 40px 1fr;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .calc-box {
+            background-color: #F8F9FA;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .calc-box h4 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .calc-box textarea {
+            width: 100%;
+            height: 60px;
+            border: none;
+            background: transparent;
+            font-family: 'Roboto', sans-serif;
+            resize: none;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .vs-sign {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--border-color);
+            text-align: center;
+        }
+
+        /* 逆向思考工作区 */
+        .inversion-section {
+            background-color: var(--paper-color);
+            padding: 30px 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .inversion-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .inversion-box {
+            background-color: #F8F9FA;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .inversion-box h4 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .inversion-box.backward h4 {
+            color: #FF6B6B;
+        }
+
+        .inversion-box textarea {
+            width: 100%;
+            height: 80px;
+            border: none;
+            background: transparent;
+            font-family: 'Roboto', sans-serif;
+            resize: none;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-light);
+            letter-spacing: 2px;
+            opacity: 0.7;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .checklist-container {
+                width: 100%;
+                box-shadow: none;
+            }
+            .header, .track-card, .opp-cost-section, .inversion-section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="checklist-container">
+        
+        <div class="header">
+            <h1 class="title-cn">芒格决策双轨检查清单</h1>
+            <div class="title-en">The Munger Two-Track Analysis Checklist</div>
+            <div class="quote-box">
+                "在我看来，如果你不使用这种方法，你就像是一个独腿的人在参加踢屁股比赛。" <br>
+                —— 查理·芒格
+            </div>
+        </div>
+
+        <div class="two-track-layout">
+            <!-- 左脑轨道 -->
+            <div class="track-card left-brain">
+                <div class="track-header">
+                    <span class="icon">🧠</span>
+                    理性轨道：逻辑与事实
+                </div>
+
+                <div class="check-item">
+                    <div class="checkbox"></div>
+                    <div class="item-title">风险评估 Risk</div>
+                    <div class="item-desc">
+                        <ul>
+                            <li>如果不做这事会怎样？</li>
+                            <li>如果做了，最坏的结果是什么？</li>
+                            <li>我是否留足了安全边际？</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="check-item">
+                    <div class="checkbox"></div>
+                    <div class="item-title">独立判断 Independence</div>
+                    <div class="item-desc">
+                        <ul>
+                            <li>观点是基于逻辑，还是基于共识？</li>
+                            <li>如果只有我一个人做，我还敢吗？</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="check-item">
+                    <div class="checkbox"></div>
+                    <div class="item-title">准备工作 Preparation</div>
+                    <div class="item-desc">
+                        <ul>
+                            <li>我是否比对手更用功？</li>
+                            <li>所有相关信息我都读完了吗？</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="check-item">
+                    <div class="checkbox"></div>
+                    <div class="item-title">智力诚实 Humility</div>
+                    <div class="item-desc">
+                        <ul>
+                            <li>我在寻找真相，还是寻找“我是对的”？</li>
+                            <li>我能比对手更强地反驳自己吗？</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="check-item">
+                    <div class="checkbox"></div>
+                    <div class="item-title">配置效率 Allocation</div>
+                    <div class="item-desc">
+                        <ul>
+                            <li>这是我目前最好的机会吗？</li>
+                            <li>和第二选择相比，优势够大吗？</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右脑轨道 -->
+            <div class="track-card right-brain">
+                <div class="track-header">
+                    <span class="icon">❤️</span>
+                    心理轨道：情绪与误判
+                </div>
+
+                <div class="check-item">
+                    <div class="checkbox"></div>
+                    <div class="item-title">误判扫描 Misjudgment</div>
+                    <div class="item-desc">
+                        <ul>
+                            <li>是否处于“奖励超级反应”？</li>
+                            <li>是否因“喜爱倾向”忽略了缺陷？</li>
+                            <li>是否因“被剥夺感”而急于回本？</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="check-item">
+                    <div class="checkbox"></div>
+                    <div class="item-title">压力测试 Stress</div>
+                    <div class="item-desc">
+                        <ul>
+                            <li>是否处于压力、愤怒或狂热中？</li>
+                            <li>(如是，停下来，等情绪退潮)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="check-item">
+                    <div class="checkbox"></div>
+                    <div class="item-title">激励机制 Incentives</div>
+                    <div class="item-desc">
+                        <ul>
+                            <li>推销给我的人，他的KPI是什么？</li>
+                            <li>这事做成了，谁赚得最多？</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="check-item">
+                    <div class="checkbox"></div>
+                    <div class="item-title">一致性陷阱 Consistency</div>
+                    <div class="item-desc">
+                        <ul>
+                            <li>坚持做，是因为它真的对？</li>
+                            <li>还是因为投了钱，不想打脸？</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="check-item">
+                    <div class="checkbox"></div>
+                    <div class="item-title">合力效应 Lollapalooza</div>
+                    <div class="item-desc">
+                        <ul>
+                            <li>是否存在多种心理倾向叠加？</li>
+                            <li>(如：稀缺+社会认同+权威)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 机会成本计算器 -->
+        <div class="opp-cost-section">
+            <div class="section-header">
+                <span class="icon">⚖️</span> 机会成本计算器 (Opportunity Cost Calculator)
+            </div>
+            <div class="calc-grid">
+                <div class="calc-box">
+                    <h4>我要做的事 (Option A)</h4>
+                    <textarea placeholder="输入你想做的事及其潜在收益..."></textarea>
+                </div>
+                <div class="vs-sign">VS</div>
+                <div class="calc-box">
+                    <h4>我放弃的最好的事 (The Cost)</h4>
+                    <textarea placeholder="如果做A，我将无法做的最有价值的事是什么？"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- 逆向思考工作区 -->
+        <div class="inversion-section">
+            <div class="section-header">
+                <span class="icon">⚡️</span> 逆向思考工作区 (The Inversion Worksheet)
+            </div>
+            <div class="inversion-grid">
+                <div class="inversion-box">
+                    <h4>正向：我想要达成什么？</h4>
+                    <textarea placeholder="例如：我想让这个项目成功..."></textarea>
+                </div>
+                <div class="inversion-box backward">
+                    <h4>逆向：如何保证彻底失败？</h4>
+                    <textarea placeholder="例如：拖延、不沟通、忽视细节...（然后避免做这些）"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            BRAINPOWER · MUNGER'S LATTICEWORK · 2025 EDITION
+        </div>
+    </div>
+
+</body>
+</html>

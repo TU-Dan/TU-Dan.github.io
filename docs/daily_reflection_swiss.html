@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日进化清单 | Daily Evolution Protocol</title>
+    <style>
+        :root {
+            --bg-color: #F0F0F0;
+            --sidebar-bg: #FFFFFF;
+            --text-color: #111111;
+            --accent: #E63946; /* Swiss Red */
+            --border-width: 2px;
+            --border-color: #000000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            /* 全局优先微软雅黑/苹方 */
+            font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* 英文辅助字体类 */
+        .en-font {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        /* Sidebar */
+        aside {
+            width: 300px;
+            background: var(--sidebar-bg);
+            border-right: var(--border-width) solid var(--border-color);
+            padding: 40px;
+            position: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 10;
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            margin-bottom: 40px;
+            text-decoration: none;
+            color: black;
+            display: block;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        .quote-box {
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333;
+            border-top: var(--border-width) solid var(--border-color);
+            border-bottom: var(--border-width) solid var(--border-color);
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .quote-author {
+            font-family: "Helvetica Neue", sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 10px;
+            display: block;
+            color: #666;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+        .nav-menu li {
+            margin-bottom: 15px;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-size: 15px;
+            font-weight: 700;
+            transition: color 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .nav-menu a span.en-sub {
+            font-size: 12px;
+            font-weight: normal;
+            margin-top: 2px;
+            color: #999;
+            font-family: "Helvetica Neue", sans-serif;
+            text-transform: uppercase;
+        }
+        
+        .nav-menu a:hover { color: var(--accent); }
+        .nav-menu a:hover span.en-sub { color: var(--accent); }
+        
+        .back-link {
+            margin-top: auto;
+            font-size: 12px;
+            color: #999;
+            text-decoration: none;
+            font-family: "Microsoft YaHei", sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .save-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--text-color);
+            color: #fff;
+            border: none;
+            font-family: "Microsoft YaHei", sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.2s;
+            margin-bottom: 20px;
+        }
+        
+        .save-btn:hover {
+            background: var(--accent);
+        }
+        
+        .save-btn .sub {
+            display: block;
+            font-size: 11px;
+            font-weight: normal;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        /* Main Content */
+        main {
+            margin-left: 300px;
+            flex: 1;
+            padding: 60px 80px;
+            background-color: var(--bg-color);
+        }
+
+        .doc-header {
+            border-bottom: 4px solid var(--border-color);
+            padding-bottom: 40px;
+            margin-bottom: 60px;
+        }
+
+        .doc-id {
+            font-family: monospace;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        h1 {
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 4rem;
+            line-height: 1.1;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .h1-sub {
+            font-family: "Times New Roman", serif;
+            font-size: 2rem;
+            color: #555;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        /* Grid System */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .track-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .track-title {
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            border-bottom: var(--border-width) solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+        
+        .track-title .en-sub {
+            font-family: "Helvetica Neue", sans-serif;
+            font-size: 16px;
+            color: #666;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .right-brain .track-title {
+            color: var(--text-color);
+            border-color: var(--text-color);
+        }
+        .right-brain .track-title .en-sub {
+            color: #666;
+        }
+
+        /* Checklist Card */
+        .check-card {
+            background: #fff;
+            border: var(--border-width) solid var(--border-color);
+            padding: 25px;
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+        .check-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 4px 4px 0px var(--border-color);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .check-title {
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            color: #000;
+        }
+        
+        .check-title .en-sub {
+            font-family: "Helvetica Neue", sans-serif;
+            font-size: 13px;
+            color: #888;
+            margin-top: 4px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-left: 10px;
+        }
+
+        .checkbox.checked {
+            background-color: var(--text-color);
+            position: relative;
+        }
+        
+        .checkbox.checked::after {
+            content: '✓';
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .check-list {
+            list-style: none;
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .check-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .check-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+
+        /* Tools Section */
+        .tools-section {
+            border-top: 4px solid var(--border-color);
+            padding-top: 60px;
+        }
+
+        .section-label {
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            background: var(--text-color);
+            color: #fff;
+            padding: 5px 12px;
+            display: inline-block;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .tool-box {
+            background: #fff;
+            border: var(--border-width) solid var(--border-color);
+            padding: 30px;
+        }
+        
+        .tool-box.highlight {
+            border-color: var(--accent);
+            background-color: #FFFDFD;
+        }
+
+        .input-label {
+            display: block;
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #000;
+        }
+        
+        .input-label .en-sub {
+            font-family: monospace;
+            font-size: 12px;
+            color: #888;
+            margin-left: 8px;
+            font-weight: normal;
+            text-transform: uppercase;
+        }
+        
+        .highlight .input-label {
+            color: var(--accent);
+        }
+
+        textarea {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 15px;
+            padding: 10px 0;
+            resize: none;
+            background: transparent;
+            outline: none;
+            line-height: 1.5;
+        }
+
+        textarea:focus {
+            border-bottom: 2px solid var(--text-color);
+        }
+        
+        .highlight textarea:focus {
+            border-bottom: 2px solid var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            body { flex-direction: column; }
+            aside { width: 100%; position: relative; height: auto; border-right: none; border-bottom: var(--border-width) solid var(--border-color); }
+            main { margin-left: 0; padding: 40px 20px; }
+            .grid-container { grid-template-columns: 1fr; }
+            h1 { font-size: 3rem; }
+            .h1-sub { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div>
+            <a href="index.html" class="brand">BrainPower.</a>
+            
+            <div class="quote-box">
+                "每天睡觉前，努力比你醒来时更聪明一点点。"
+                <span class="quote-author">— Charlie Munger</span>
+            </div>
+            
+             <div class="quote-box" style="border-top: none; padding-top: 0;">
+                "对自己诚实，是人类能拥有的最核心的品德。"
+                <span class="quote-author">— Li Lu</span>
+            </div>
+
+            <ul class="nav-menu">
+                <li>
+                    <a href="#lilu">
+                        智力诚实 (李录)
+                        <span class="en-sub">01. Intellectual Honesty</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#munger">
+                        智慧复利 (芒格)
+                        <span class="en-sub">02. Compound Wisdom</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#log">
+                        知识增量记录
+                        <span class="en-sub">03. Knowledge Log</span>
+                    </a>
+                </li>
+            </ul>
+
+            <button onclick="savePage()" class="save-btn">
+                💾 Save Record
+                <span class="sub">保存当前记录</span>
+            </button>
+        </div>
+
+        <a href="index.html" class="back-link">← 返回首页 Back to Index</a>
+    </aside>
+
+    <main>
+        <div class="doc-header">
+            <div class="doc-id">DOC. NO. 002 // DAILY ROUTINE</div>
+            <h1>每日进化<br>复盘清单</h1>
+            <div class="h1-sub">Daily Evolution Protocol</div>
+        </div>
+
+        <div class="grid-container">
+            <!-- Left: Li Lu (Honesty) -->
+            <div class="track-column" id="lilu">
+                <div class="track-title">
+                    智力诚实校准 <span class="en-sub">Li Lu's Protocol</span>
+                </div>
+
+                <div class="check-card">
+                    <div class="card-header">
+                        <div class="check-title">
+                            自欺测试
+                            <span class="en-sub">Self-Deception Check</span>
+                        </div>
+                        <div class="checkbox"></div>
+                    </div>
+                    <ul class="check-list">
+                        <li>今天我是否对“我不知道”的事情假装知道？</li>
+                        <li>在向别人推销观点时，我是否隐瞒了反面证据？</li>
+                        <li>我是否在没有“实地调研”的情况下做出了判断？</li>
+                    </ul>
+                </div>
+
+                <div class="check-card">
+                    <div class="card-header">
+                        <div class="check-title">
+                            能力圈边界
+                            <span class="en-sub">Circle of Competence</span>
+                        </div>
+                        <div class="checkbox"></div>
+                    </div>
+                    <ul class="check-list">
+                        <li>今天我是否跨出了我的能力圈而不自知？</li>
+                        <li>对于我持有的强烈观点，我能比反对者更好地反驳它吗？</li>
+                    </ul>
+                </div>
+                
+                 <div class="check-card">
+                    <div class="card-header">
+                        <div class="check-title">
+                            预期管理
+                            <span class="en-sub">Rational Expectations</span>
+                        </div>
+                        <div class="checkbox"></div>
+                    </div>
+                    <ul class="check-list">
+                        <li>我是否因为“想要”某个结果，而扭曲了对概率的判断？</li>
+                        <li>面对坏消息，我是否做到了像面对好消息一样冷静？</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right: Munger (Wisdom) -->
+            <div class="track-column right-brain" id="munger">
+                <div class="track-title">
+                    智慧复利积累 <span class="en-sub">Munger's Protocol</span>
+                </div>
+
+                <div class="check-card">
+                    <div class="card-header">
+                        <div class="check-title">
+                            增量确认
+                            <span class="en-sub">Wisdom Compound</span>
+                        </div>
+                        <div class="checkbox"></div>
+                    </div>
+                    <ul class="check-list">
+                        <li>现在的我，是否比今天早上醒来时更聪明了一点？</li>
+                        <li>今天我是否掌握了一个能在未来长期使用的思维模型？</li>
+                        <li>我是否阅读了优质的内容，而非垃圾信息？</li>
+                    </ul>
+                </div>
+
+                <div class="check-card">
+                    <div class="card-header">
+                        <div class="check-title">
+                            逆向纠错
+                            <span class="en-sub">Inversion & Correction</span>
+                        </div>
+                        <div class="checkbox"></div>
+                    </div>
+                    <ul class="check-list">
+                        <li>今天我犯了什么愚蠢的错误？（承认并记录它）</li>
+                        <li>如果这一天重来一次，我在哪里可以做得不一样？</li>
+                        <li>我是否避开了那些“显而易见”的失败陷阱？</li>
+                    </ul>
+                </div>
+                
+                <div class="check-card">
+                    <div class="card-header">
+                        <div class="check-title">
+                            耐心与好奇
+                            <span class="en-sub">Patience & Curiosity</span>
+                        </div>
+                        <div class="checkbox"></div>
+                    </div>
+                    <ul class="check-list">
+                        <li>今天我是否在没有机会时保持了耐心？</li>
+                        <li>今天我是否在有机会时果断采取了行动？</li>
+                        <li>我是否对世界保持了孩童般的好奇心？</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tools Section -->
+        <div class="tools-section">
+            <div class="section-label" id="log">知识增量记录区</div>
+            
+            <div class="grid-container">
+                <div class="tool-box highlight">
+                    <label class="input-label">今日最重要的新知/模型 <span class="en-sub">The Big Idea</span></label>
+                    <textarea placeholder="写下今天学到的一个可以复用的概念..." rows="4"></textarea>
+                </div>
+                <div class="tool-box">
+                    <label class="input-label">今日反思/愚蠢记录 <span class="en-sub">Mistake Log</span></label>
+                    <textarea placeholder="诚实地记录今天的失误，作为未来的护城河..." rows="4"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        document.querySelectorAll('.checkbox').forEach(box => {
+            box.addEventListener('click', function() {
+                this.classList.toggle('checked');
+            });
+        });
+
+        function savePage() {
+            // 1. Sync Textareas
+            document.querySelectorAll('textarea').forEach(area => {
+                area.textContent = area.value;
+            });
+
+            // 2. Generate Filename
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const dateStr = `${year}-${month}-${day}`;
+            const fileName = `Daily_Evolution_${dateStr}.html`;
+
+            // 3. Create Blob
+            const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], {type: 'text/html'});
+            
+            // 4. Download
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+
+</body>
+</html>

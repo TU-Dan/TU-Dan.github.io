@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>查理·芒格 USC 演讲精华｜如何保证自己过得悲惨</title>
+  <meta name="description" content="查理·芒格 USC 演讲精华：《如何保证自己过得悲惨》(How to Guarantee a Life of Misery)" />
+  <style>
+    :root{
+      --bg: #FBFBFD;
+      --card: #FFFFFF;
+      --text: #1D1D1F;
+      --muted: #6E6E73;
+      --border: rgba(0,0,0,0.06);
+      --accent: #0066CC; /* Apple link blue */
+      --danger: #B42318; /* muted red */
+      --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Text","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Microsoft YaHei", Arial, sans-serif;
+    }
+
+    *{ box-sizing: border-box; margin: 0; padding: 0; }
+    body{
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a{ color: inherit; text-decoration: none; }
+
+    .wrap{
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px 18px 80px;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .brand{ font-weight: 700; color: var(--text); }
+    .back{ color: var(--muted); }
+    .back:hover{ color: var(--text); }
+
+    .hero{
+      padding: 34px 0 20px;
+    }
+    .kicker{
+      display:inline-flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .pill{
+      border: 1px solid var(--border);
+      background: rgba(0,102,204,0.08);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    h1{
+      font-size: 44px;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .sub{
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 18px;
+    }
+    .meta{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
+    }
+    .meta b{ color: var(--text); font-weight: 600; }
+
+    .callout{
+      background: transparent;
+      border: 1px solid var(--border);
+      border-left: 3px solid rgba(0,102,204,0.35);
+      border-radius: 18px;
+      padding: 16px 18px;
+      margin: 22px 0 26px;
+    }
+    .callout strong{ color: var(--text); }
+    .callout p{ color: var(--muted); font-size: 14px; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .section-title{
+      margin: 2px 0 12px;
+      font-size: 16px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .subtitle{
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: -8px;
+      margin-bottom: 18px;
+    }
+
+    .poison-title{
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .label{
+      font-size: 18px;
+      color: var(--muted);
+      font-weight: 700;
+      margin: 14px 0 6px;
+    }
+
+    .label1{
+      font-size: 13px;
+      color: var(--danger);
+      font-weight: 700;
+      margin: 14px 0 6px;
+    }
+
+    .label2{
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 700;
+      margin: 14px 0 6px;
+    }
+
+    .quote{
+      border-left: 3px solid rgba(0,0,0,0.08);
+      padding: 10px 14px;
+      color: var(--muted);
+      background: rgba(0,0,0,0.015);
+      border-radius: 12px;
+      margin-top: 8px;
+    }
+
+    .divider{
+      height: 1px;
+      background: rgba(0,0,0,0.06);
+      margin: 22px 0;
+    }
+
+    .box{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 22px;
+      box-shadow: var(--shadow);
+    }
+    .box h2{
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .box h2 .n{
+      display:inline-flex;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,0.04);
+      color: var(--muted);
+      margin-right: 10px;
+      font-weight: 800;
+    }
+
+    .row{
+      display:block;
+      margin-top: 8px;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--muted);
+      font-weight: 800;
+      margin-top: 10px;
+    }
+    .tag .dot{
+      display:none;
+    }
+
+    .p{
+      color: var(--text);
+      font-size: 15px;
+    }
+    .muted{
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    ul{
+      margin-top: 8px;
+      padding-left: 18px;
+      color: var(--text);
+    }
+    li{ margin: 6px 0; }
+    li span{ color: var(--muted); }
+
+    .checkline{
+      display:flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(0,0,0,0.06);
+    }
+    .checkline:last-child{ border-bottom: 0; }
+    .cb{
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      border: 2px solid rgba(0,0,0,0.18);
+      margin-top: 2px;
+      flex: 0 0 auto;
+      cursor: pointer;
+      position: relative;
+    }
+    .cb.checked{
+      border-color: var(--accent);
+      background: rgba(0,102,204,0.10);
+    }
+    .cb.checked::after{
+      content: "✓";
+      position:absolute;
+      inset: 0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 12px;
+    }
+    .checktext{
+      font-size: 14px;
+      color: var(--text);
+    }
+    .checktext b{ font-weight: 700; }
+    .checktext i{ color: var(--muted); font-style: normal; }
+
+    .footer{
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .ref{
+      margin-top: 10px;
+      padding-left: 16px;
+    }
+    .ref li{ color: var(--muted); }
+    .ref a{ color: var(--muted); text-decoration: underline; }
+
+    @media (min-width: 820px){
+      .grid{ grid-template-columns: 1fr; }
+      h1{ font-size: 50px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">BrainPower.</div>
+      <a class="back" href="index.html">← 返回首页</a>
+    </div>
+
+    <section class="hero">
+      <div class="kicker">
+        <span class="pill">Mental Models</span>
+        <span>查理·芒格</span>
+      </div>
+      <h1>《如何保证自己过得悲惨》<br>How to Guarantee a Life of Misery</h1>
+      <div class="subtitle">查理·芒格 USC 演讲精华</div>
+    </section>
+
+    <div class="section-title">这篇演讲发表于 1986年南加州大学（USC） 的毕业典礼，是芒格智慧的巅峰之作。他没有教学生怎么成功，而是教他们“只要避开这些，你就不可能失败”。</div>
+
+    <div class="box">
+      <div class="poison-title">第一剂毒药：反复无常 (Reliability)</div>
+      <div class="label1">悲惨指南</div>
+      <div class="p">如果你想悲惨，就做一个不可靠的人。哪怕你才华横溢、智商超群，只要你不可靠，你就能成功地搞砸你的一生。</div>
+      <div class="label2">芒格解药</div>
+      <div class="p">可靠性（Reliability）是所有美德的核心。如果你不可靠，你的其他优点都等于零。做一个让别人能把重任托付给你的人。</div>
+    </div>
+
+    <div class="box" style="margin-top:16px;">
+      <div class="poison-title">第二剂毒药：不吸取教训 (Learning from Experience)</div>
+      <div class="label1">悲惨指南</div>
+      <div class="p">只从自己的经验中学习，绝不去学别人的经验，更别去学那些死人的经验（历史）。这样你就能保证在每一个坑里都跌一遍。</div>
+      <div class="label2">芒格解药</div>
+      <div class="quote">“我这辈子遇到的聪明人，没有一个不是每天阅读的。”</div>
+      <div class="p" style="margin-top:8px;">通过阅读，你可以和历史上最伟大的人交朋友，用极其低廉的成本获取他们一生的智慧。</div>
+    </div>
+
+    <div class="box" style="margin-top:16px;">
+      <div class="poison-title">第三剂毒药：意志消沉 (Giving Up)</div>
+      <div class="label1">悲惨指南</div>
+      <div class="p">当你遇到第一次、第二次、第三次挫折时，你就立刻趴下，再也不起来。这样你就能确保自己永远是个失败者。</div>
+      <div class="label2">芒格解药</div>
+      <div class="quote">“生活就是一连串的猛击。”</div>
+      <div class="p" style="margin-top:8px;">逆境是不可避免的。关键不是避免逆境，而是面对逆境时的态度。甚至要把逆境看作是一种锻炼和机会（爱比克泰德的斯多葛哲学）。</div>
+    </div>
+
+    <div class="box" style="margin-top:16px;">
+      <div class="poison-title">第四剂毒药：忽略反向思考 (Inversion)</div>
+      <div class="label1">悲惨指南</div>
+      <div class="p">遇到问题只正着想（我想把项目做好），绝不反着想（什么会毁掉这个项目？）。这样你不仅解决不了问题，还会制造新问题。</div>
+      <div class="label2">芒格解药</div>
+      <div class="quote">“反过来想，总是反过来想。”</div>
+      <div class="p" style="margin-top:8px;">如果你想把项目做好，先问：“什么会把它彻底搞砸？”然后避免做这些事。</div>
+    </div>
+
+    <div class="box" style="margin-top:16px;">
+      <div class="poison-title">第五剂毒药：受到“变态激励”的驱动 (Perverse Incentives)</div>
+      <div class="label1">悲惨指南</div>
+      <div class="p">去那些激励机制有问题的地方工作（如做假账的公司），或者设计一套糟糕的激励机制让你的员工骗你。</div>
+      <div class="label2">芒格解药</div>
+      <div class="quote">“不要处于一个你不得不撒谎的系统中。”</div>
+      <div class="p" style="margin-top:8px;">如果激励机制是邪恶的，普通人也会变坏。要远离有毒的激励，或者设计“不用靠道德也能运转”的良性机制。</div>
+    </div>
+
+    <div class="box" style="margin-top:16px;">
+      <div class="poison-title">第六剂毒药：偏执与意识形态 (Ideological Bias)</div>
+      <div class="label1">悲惨指南</div>
+      <div class="p">哪怕你很年轻，也赶紧找个极端的意识形态（政治或宗教）把自己锁死。把你的一生用来把这个观念强加给别人。</div>
+      <div class="label2">芒格解药</div>
+      <div class="quote">“当一个年轻人满脑子都是意识形态时，他的大脑就死机了。”</div>
+      <div class="p" style="margin-top:8px;">保持头脑的开放，随时准备根据新证据修改自己的观点。</div>
+    </div>
+
+    <div class="box" style="margin-top:16px;">
+      <div class="poison-title">第七剂毒药：嫉妒、怨恨、自怜 (Envy, Resentment, Self-Pity)</div>
+      <div class="label1">悲惨指南</div>
+      <div class="p">每天花时间去嫉妒比你强的人，去怨恨社会不公，去可怜自己的遭遇。这样你就能保证自己既痛苦又一事无成。</div>
+      <div class="label2">芒格解药</div>
+      <div class="p">这些情绪是“灾难性的”。它们会吞噬你的能量，却不产生任何价值。特别是自怜，一旦发现自己有自怜的苗头，要像对待恶性肿瘤一样立刻切除。</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="box">
+      <div class="poison-title">还有两个隐藏的“彩蛋”：</div>
+
+      <div class="label">1. 关于“老得太快，聪明得太晚”：</div>
+      <div class="p">人类的认知有缺陷。如果你不努力对抗这些缺陷（如“铁锤人综合征”），你就会变成一个顽固的老糊涂。</div>
+      <div class="p" style="margin-top:8px;">解药：掌握多个思维模型（格栅思维）。</div>
+
+      <div class="label" style="margin-top:16px;">2. 关于“在这个复杂的系统中生存”：</div>
+      <div class="p">如果你想在这个系统里活得好，你必须对自己要求严格，对别人宽容。</div>
+      <div class="p" style="margin-top:8px;">原话：“己所不欲，勿施于人。”（The Golden Rule）。</div>
+    </div>
+
+    <div class="footer">
+      <div><b>出处与说明</b></div>
+      <ul class="ref">
+        <li>芒格关于反向思考（Inversion）与“避免愚蠢”的方法论，常见于《穷查理宝典》（Poor Charlie’s Almanack）及其相关演讲整理。</li>
+      </ul>
+      <div style="margin-top:10px;">BrainPower · Mental Models · 2025</div>
+    </div>
+  </div>
+
+</body>
+</html>
+
+

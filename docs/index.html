@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainPower | World in Numbers</title>
+    <meta name="description" content="BrainPower - 记录数据科学、AI思考与生活美学">
+    <style>
+        :root {
+            /* Apple-esque Color Palette */
+            --bg-color: #FBFBFD; /* 极浅的灰白，比纯白更护眼、高级 */
+            --card-bg: #FFFFFF;
+            --text-primary: #1D1D1F; /* 接近黑色的深灰 */
+            --text-secondary: #86868B;
+            --accent-color: #0066CC; /* 经典的链接蓝，克制使用 */
+            --border-color: rgba(0,0,0,0.05);
+            --transition-speed: 0.3s;
+            --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #000000;
+                --card-bg: #1C1C1E;
+                --text-primary: #F5F5F7;
+                --text-secondary: #86868B;
+                --border-color: rgba(255,255,255,0.1);
+                --accent-color: #2997FF;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 980px; /* Apple官网常用的内容宽度 */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Nav */
+        header {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-family: "SF Pro Display", var(--font-stack);
+        }
+
+        nav a {
+            margin-left: 24px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color var(--transition-speed);
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem; /* 大字号 */
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, var(--text-primary) 0%, rgba(134, 134, 139, 0.8) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; /* 渐变文字效果 */
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-primary); /* 改成深色，更清晰 */
+            margin: 60px 0 30px;
+            font-weight: 700;
+            opacity: 0.8;
+            border-bottom: 1px solid var(--border-color); /* 加条下划线增强分区感 */
+            padding-bottom: 15px;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 30px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 240px;
+        }
+
+        .card:hover {
+            transform: scale(1.02); /* 经典的微放大效果 */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: transparent;
+        }
+
+        .card-category {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            display: -webkit-box;
+            line-clamp: 3;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .arrow-icon {
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all var(--transition-speed);
+        }
+
+        .card:hover .arrow-icon {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Collections Card Specific */
+        .card.collection-card {
+            background-color: #FBFBFD;
+        }
+
+        /* 修复 collection 卡片标题在浅灰背景下对比度不足的问题 */
+        .card.collection-card h3 {
+            color: #1D1D1F; /* 纯黑标题 */
+            font-weight: 700;
+        }
+        
+        .card.collection-card p {
+            color: #86868B; /* 更深的灰色正文 */
+        }
+        
+        .card.collection-card .card-category {
+            font-weight: 800; /* 加粗分类标签 */
+            filter: brightness(0.9); /* 让分类颜色稍微深一点 */
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.2rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 导航栏 -->
+        <header>
+            <a href="#" class="logo">BrainPower.</a>
+            <nav>
+                <a href="#thoughts">Thoughts</a>
+                <a href="#collections">Collections</a>
+                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+            </nav>
+        </header>
+
+        <!-- 核心Slogan / Hero区 -->
+        <section class="hero">
+            <h1>World in Numbers.</h1>
+            <p>在数据、AI与人类叙事之间，<br>寻找本质的流动。</p>
+        </section>
+
+        <!-- 思考模块 -->
+        <div class="section-title" id="thoughts">Deep Thoughts</div>
+        <div class="grid">
+             <!-- 文章卡片：每日进化 -->
+             <a href="daily_reflection_swiss.html" class="card">
+                <div>
+                    <div class="card-category">Mental Models</div>
+                    <h3>每日进化复盘清单</h3>
+                    <p>结合李录的“智力诚实”与芒格的“智慧复利”，每日必做的反思复盘日课。</p>
+                </div>
+                <div class="card-footer">
+                    <span>Dec 24, 2025</span>
+                    <span class="arrow-icon">→</span>
+                </div>
+            </a>
+
+            <!-- 文章卡片 1 -->
+            <a href="munger_checklist_swiss.html" class="card">
+                <div>
+                    <div class="card-category">Mental Models</div>
+                    <h3>查理·芒格的决策清单</h3>
+                    <p>重读《穷查理宝典》，梳理出的25个核心误判心理学检查项，用于投资决策与生活复盘。</p>
+                </div>
+                <div class="card-footer">
+                    <span>Dec 15, 2025</span>
+                    <span class="arrow-icon">→</span>
+                </div>
+            </a>
+
+
+
+        </div>
+
+        <!-- 收藏模块 -->
+        <div class="section-title" id="collections">Curated Collections</div>
+        <div class="grid">
+             <!-- 收藏卡片：芒格演讲 -->
+             <a href="munger_usc_misery.html" class="card collection-card">
+                <div>
+                    <div class="card-category">Reading</div>
+                    <h3>芒格USC演讲精华</h3>
+                    <p>《How to Guarantee a Life of Misery》：芒格关于反向思考与“避免愚蠢”的方法论。</p>
+                </div>
+                <div class="card-footer">
+                    <span>Dec 18, 2025</span>
+                    <span class="arrow-icon">→</span>
+                </div>
+            </a>
+
+             <!-- 收藏卡片 1 -->
+             <a href="#" class="card collection-card">
+                <div>
+                    <div class="card-category">Reading</div>
+                    <h3>微信读书 Top Insights</h3>
+                    <p>从5000+本书籍中提炼的核心方法论：涵盖内容营销、组织管理与认知升级。</p>
+                </div>
+                <div class="card-footer">
+                    <span>Updated Weekly</span>
+                    <span class="arrow-icon">→</span>
+                </div>
+            </a>
+
+ 
+        </div>
+
+        <footer>
+            <p>&copy; 2025 BrainPower (W.I.N). Built with intention.</p>
+            <div style="margin-top: 10px;">
+                <a href="#">Email</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">RSS</a>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
